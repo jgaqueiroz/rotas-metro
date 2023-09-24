@@ -1,0 +1,15 @@
+{% for instrucao in instrucoes %}{% if instrucao.0 == 0 %}
+<div class="instrucao transito">
+    <div class="dot"></div>
+    {{instrucao.1.nome}}
+</div>{% endif %}{% if instrucao.0 == 1 %}
+<div class="instrucao embarque" style="background-color: {{instrucao.1.linha.cor}}">
+    Embarque na estação <strong>{{instrucao.1.nome}}</strong> (destino: <strong>{{instrucao.2}}</strong>)
+</div>{% endif %}{% if instrucao.0 == 2 %}
+<div class="instrucao desembarque" style="background-color: {{instrucao.1.linha.cor}}">
+    Desembarque na estação <strong>{{instrucao.1.nome}}</strong>
+</div>{% endif %}{% if instrucao.0 == 3 %}
+<div class="instrucao transferencia" style="background: linear-gradient(135deg, {{instrucao.1.linha.cor}} 50%, {{instrucao.2.linha.cor}} 50%)">
+    Faça a transferência da linha <strong>{{instrucao.1.linha}}</strong> para a linha <strong>{{instrucao.2.linha}}</strong>
+</div>{% endif %}{% endfor %}
+<a href="{% url 'metro:index' %}"><button type="button" class="btn btn-secondary btn-sm container-fluid nova-rota">Nova Rota</button></a>
